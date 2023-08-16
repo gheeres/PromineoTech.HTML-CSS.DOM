@@ -2,6 +2,36 @@
   'use strict'
   feather.replace({ 'aria-hidden': 'true' });
 
+  function createHTMLElement(html) {
+    let template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.firstElementChild;
+  }
+
+  // function createAlert(quote) {
+  //   let div = document.createElement('div');
+  //   div.className = "alert alert-primary";
+  //   div.role = "alert";
+  //   div.innerHTML = quote;
+  //   return div;
+  // }
+
+  const speak = document.getElementById('speak');
+  const wisdom = document.querySelector('#wisdom');
+
+  speak.addEventListener('click', (e) => {
+    let quote = quotes[random(quotes.length - 1)];
+    //console.log(quote);
+    //let alert = createAlert(quote);
+    let alert = createHTMLElement(`
+      <div class="alert alert-primary" role="alert">
+      ${ quote }
+      </div>`
+    );
+    //console.log(alert);
+    wisdom.appendChild(alert);
+  });
+
   const quotes = [
     'Never let your best friends get lonely, keep disturbing them.',
     'Sometimes I wish I was an octopus, so I could slap eight people at once.',
