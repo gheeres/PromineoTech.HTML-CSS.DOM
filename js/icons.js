@@ -2,8 +2,29 @@
    'use strict';
     feather.replace({ 'aria-hidden': 'true' });
 
+    const addButton = document.querySelector('.js-add');
+    const iconContainer = document.querySelector('.icon-container');
+    console.log(addButton);
+    console.log(iconContainer);
 
+    addButton.addEventListener('click', (e) => {
+      const icon = createRandomIcon(getAllIcons());
+      console.log(icon);
+      //iconContainer.append(icon);
+      iconContainer.replaceChildren(icon);
+    });
   
+    /**
+     * Create an HTML element containing a random icon.
+     * @param {Array[String]} icons The icons to read from.
+     * @returns The HTML icon.
+     */
+    function createRandomIcon(icons) {
+      const icon = icons[random(icons.length)];
+      const el = createHTMLElement(`<i class="bi bi-${ icon }"></i>`);
+      return el;
+    }
+
     // ----------------------------------------------------------------------
   
     /**

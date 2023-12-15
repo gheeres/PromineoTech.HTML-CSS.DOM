@@ -19,8 +19,41 @@
     'When nothing is going right, go left.',
   ];
 
+  const speakButton = document.getElementById('speak');
+  //const speakButton = document.querySelectorAll('#speak')[0];
+  //console.log(speakButton);
+  speakButton.addEventListener('click', function(e) {
+    console.log(e);
+    const quote = quotes[random(quotes.length - 1)];
+    console.log(quote);
+    const wisdomContainer = document.getElementById('wisdom');
+    //console.log(wisdomContainer);
+
+    // const quoteElement = document.createElement('div');
+    // quoteElement.innerHTML = `<div class="alert alert-primary" role="alert">
+    //   ${ quote }
+    // </div>`;
+    const quoteElement = createHTMLElement(`<div class="alert alert-primary" role="alert">
+      ${ quote }
+    </div>`);
+
+    //console.log(quoteElement);
+    wisdomContainer.appendChild(quoteElement);
+
+  });
 
   // ----------------------------------------------------------------------
+
+  /**
+   * Create an HTML element without defining new element / class.
+   * @param {String} innerHTML The inner HTML contents
+   * @returns An HTML element.
+   */
+  function createHTMLElement(innerHTML) {
+    const template = document.createElement('template');
+    template.innerHTML = innerHTML;
+    return template.content.firstElementChild;
+  }
 
   /**
    * Generates a random number.
